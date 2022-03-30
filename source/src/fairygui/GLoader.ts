@@ -260,6 +260,7 @@ namespace fgui {
                     }
                     else {
                         this._content2 = obj.asCom;
+                        this._content2.parent = <any>this;
                         this._displayObject.addChild(this._content2.displayObject);
                         this.updateLayout();
                     }
@@ -270,6 +271,7 @@ namespace fgui {
             else
                 this.setErrorState();
         }
+        setBoundsChangedFlag(){}
 
         protected loadExternal(): void {
             AssetProxy.inst.load(this._url, Laya.Handler.create(this, this.__getResCompleted), null, Laya.Loader.IMAGE);
@@ -428,6 +430,7 @@ namespace fgui {
 
             if (this._content2) {
                 this._content2.dispose();
+                this._content2.parent = null
                 this._content2 = null;
             }
 
